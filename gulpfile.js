@@ -4,14 +4,12 @@ var gulp = require('gulp'),
 	should = require('should'),
 	watchingTests = false;
 
-
-
 function handleTestError(err) {
 	if (watchingTests) {
 		this.emit('end');
 		return;
 	}
-	
+
 	console.log(err.toString());
 	process.exit(1);
 }

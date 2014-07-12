@@ -2,18 +2,16 @@ var Point = require('../app/js/point.js');
 
 describe('A point', function() {
 
-	describe('with given coordinates', function() {
-		var point;
+	var point;
 
-		beforeEach(function() {
-			point = new Point(3, 4);
-		});
+	beforeEach(function() {
+		point = new Point(3, 4);
+	});
 
-		it('should have those coordinates', function() {
-			point.x.should.equal(3);
-			point.y.should.equal(4);
-		});
 
+	it('has an x an y coordinate', function() {
+		point.x.should.equal(3);
+		point.y.should.equal(4);
 	});
 
 });
