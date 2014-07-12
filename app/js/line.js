@@ -5,6 +5,8 @@ var Line = function(start, end) {
 
 Line.prototype.draw = function(g) {
 	g.moveTo(this.start.x, this.start.y);
+	g.lineTo(this.end.x, this.end.y);
+	g.stroke();
 };
 
  

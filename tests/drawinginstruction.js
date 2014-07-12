@@ -5,3 +5,17 @@ module.exports.moveTo = function(x, y) {
 		y: y
 	};
 };
+
+module.exports.lineTo = function(x, y) {
+	return {
+		type: 'lineTo',
+		x: x,
+		y: y
+	};
+};
+
+module.exports.stroke = function() {
+	return {
+		type: 'stroke'
+	};
+};

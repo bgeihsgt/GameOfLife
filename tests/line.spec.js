@@ -30,8 +30,16 @@ describe('A line', function() {
 			line.draw(mockGraphics2d);
 		});
 
-		it('will move to the start point', function() {
+		it('will move to the start point first', function() {
 			mockGraphics2d.instructions[0].should.eql(DrawingInstruction.moveTo(start.x, start.y));
+		});
+
+		it('will line to the end point second', function() {
+			mockGraphics2d.instructions[1].should.eql(DrawingInstruction.lineTo(end.x, end.y));
+		});
+
+		it('will stroke third', function() {
+			mockGraphics2d.instructions[2].should.eql(DrawingInstruction.stroke());
 		});
 	});
 
