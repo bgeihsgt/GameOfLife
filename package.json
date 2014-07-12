@@ -1,0 +1,16 @@
+{
+  "name": "gameoflife-javascript",
+  "version": "0.1.0",
+  "description": "Game of life implemented using HTML5 Canvas using TDD",
+  "main": "gulpfile.js",
+  "dependencies": {    
+  },
+  "devDependencies": {
+    "gulp": "~3.8.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Brian Geihsler",
+  "license": "MIT"
+}
