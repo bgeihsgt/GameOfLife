@@ -3,6 +3,7 @@ var Point = require('../app/js/point.js');
 describe('A point', function() {
 
 	describe('with given coordinates', function() {
+		var point;
 
 		beforeEach(function() {
 			point = new Point(3, 4);
