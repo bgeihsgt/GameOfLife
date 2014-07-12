@@ -5,12 +5,13 @@ var gulp = require('gulp'),
 	watchingTests = false;
 
 function handleTestError(err) {
+	console.log(err.toString());
+
 	if (watchingTests) {
 		this.emit('end');
 		return;
 	}
 
-	console.log(err.toString());
 	process.exit(1);
 }
 
@@ -31,7 +32,7 @@ gulp.task('test', ['lint'], function() {
 
 gulp.task('watch-tests', function() {
 	watchingTests = true;
-	return gulp.watch('tests/**', ['test']);
+	return gulp.watch(['tests/**/*.js','app/**/*.js'], ['test']);
 });
 
 gulp.task('build', ['test'], function() {
