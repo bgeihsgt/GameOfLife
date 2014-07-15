@@ -20,7 +20,7 @@ describe('A line', function() {
 		line.end.should.equal(end);
 	});
 
-	it('can be built', function() {
+	it('can be built expressively', function() {
 		Line.from(start).to(end).should.eql(line);
 	});
 
