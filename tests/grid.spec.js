@@ -1,5 +1,8 @@
-var Grid = require('../app/js/grid.js');
-var Line = require('../app/js/line.js');
+var Grid = require('../app/js/grid.js'),
+	Line = require('../app/js/line.js'),
+    MockGraphics2d = require('./mockgraphics2d.js'),
+    DrawingInstruction = require('./drawinginstruction.js');
+
 
 describe('A Grid', function() {
 
@@ -29,6 +32,21 @@ describe('A Grid', function() {
 			Line.from(0, 20).to(30, 20),
 			Line.from(0, 30).to(30, 30),
 		]);
+	});
+
+	describe('when drawn', function() {
+		
+		var mockGraphics2d;
+
+		beforeEach(function() {
+			mockGraphics2d = new MockGraphics2d();
+
+			grid.draw(mockGraphics2d);
+		});
+
+		it('should draw the column and row lines', function() {
+			mockGraphics2d.instructions.should.have.lengthOf(21);
+		});
 	});
 
 

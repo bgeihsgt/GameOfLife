@@ -5,6 +5,11 @@ var Grid = function(options) {
 	this.rowLines = options.rowLines;
 };
 
+Grid.prototype.draw = function(g) { 
+	this.columnLines.forEach(function(l) { l.draw(g); });
+	this.rowLines.forEach(function(l) { l.draw(g); });
+};
+
 
 function createColumnLines(width, height, cols) {
 	var columnLines = [],
