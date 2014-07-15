@@ -1,3 +1,5 @@
+var Point = require('./point');
+
 var Line = function(start, end) {
 	this.start = start;
 	this.end = end;
@@ -9,16 +11,16 @@ Line.prototype.draw = function(g) {
 	g.stroke();
 };
 
-var LineBuilder = function(start) {
-	this.start = start;
+var LineBuilder = function(x, y) {
+	this.start = new Point(x, y);
 };
 
-LineBuilder.prototype.to = function(end) {
-	return new Line(this.start, end);
+LineBuilder.prototype.to = function(x, y) {
+	return new Line(this.start, new Point(x, y));
 };
 
-Line.from = function(point) {
-	return new LineBuilder(point);
+Line.from = function(x, y) {
+	return new LineBuilder(x, y);
 };
 
  

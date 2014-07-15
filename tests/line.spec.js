@@ -21,7 +21,7 @@ describe('A line', function() {
 	});
 
 	it('can be built expressively', function() {
-		Line.from(start).to(end).should.eql(line);
+		Line.from(start.x, start.y).to(end.x, end.y).should.eql(line);
 	});
 
 	describe('when drawn', function() {
