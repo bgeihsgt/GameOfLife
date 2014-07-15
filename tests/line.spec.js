@@ -20,6 +20,10 @@ describe('A line', function() {
 		line.end.should.equal(end);
 	});
 
+	it('can be built', function() {
+		Line.from(start).to(end).should.eql(line);
+	});
+
 	describe('when drawn', function() {
 
 		var mockGraphics2d;

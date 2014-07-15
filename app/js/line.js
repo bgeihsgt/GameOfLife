@@ -9,5 +9,17 @@ Line.prototype.draw = function(g) {
 	g.stroke();
 };
 
+var LineBuilder = function(start) {
+	this.start = start;
+};
+
+LineBuilder.prototype.to = function(end) {
+	return new Line(this.start, end);
+};
+
+Line.from = function(point) {
+	return new LineBuilder(point);
+};
+
  
 module.exports = Line;
