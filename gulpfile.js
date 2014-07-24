@@ -3,6 +3,9 @@ var gulp = require('gulp'),
 	jshint = require('gulp-jshint'),
 	should = require('should'),
 	clean = require('gulp-clean'),
+	source = require('vinyl-source-stream'),
+	rename = require('gulp-rename'),
+	browserify = require('browserify'),
 	allJsSources = ['tests/**/*.js','app/**/*.js'],
 	watchingTests = false;
 
@@ -42,7 +45,15 @@ gulp.task('watch-tests', function() {
 	return gulp.watch(allJsSources, ['test']);
 });
 
-gulp.task('build', ['clean', 'test'], function() {
+gulp.task('browserify', function() {
+	var bundleStream = browserify('./app/js/grid.js').bundle();
+
+	return bundleStream
+		.pipe(source('app.js'))		
+		.pipe(gulp.dest('build'));
+});
+
+gulp.task('build', ['clean', 'test', 'browserify'], function() {
 	return gulp.src('app/index.html')
 		.pipe(gulp.dest('build'));
 }); 
