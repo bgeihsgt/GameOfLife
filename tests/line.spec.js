@@ -20,6 +20,10 @@ describe('A line', function() {
 		line.end.should.equal(end);
 	});
 
+	it('has a default width of 1', function() {
+		line.width.should.equal(1);
+	});
+
 	it('can be built expressively', function() {
 		Line.from(start.x, start.y).to(end.x, end.y).should.eql(line);
 	});
@@ -44,6 +48,10 @@ describe('A line', function() {
 
 		it('will stroke third', function() {
 			mockGraphics2d.instructions[2].should.eql(DrawingInstruction.stroke());
+		});
+
+		it('will set the line width to line width', function() {
+			mockGraphics2d.lineWidth.should.eql(line.width);
 		});
 	});
 

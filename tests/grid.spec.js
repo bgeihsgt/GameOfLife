@@ -19,18 +19,18 @@ describe('A Grid', function() {
 
 	it('should create lines between each column', function() {
 		grid.columnLines.should.eql([
-			Line.from(6, 0).to(6, 40),
-			Line.from(12, 0).to(12, 40),
-			Line.from(18, 0).to(18, 40),
-			Line.from(24, 0).to(24, 40)
+			Line.from(6.5, 0).to(6.5, 40),
+			Line.from(12.5, 0).to(12.5, 40),
+			Line.from(18.5, 0).to(18.5, 40),
+			Line.from(24.5, 0).to(24.5, 40)
 		]);
 	});
 
 	it('should create lines between each row', function() {
 		grid.rowLines.should.eql([
-			Line.from(0, 10).to(30, 10),
-			Line.from(0, 20).to(30, 20),
-			Line.from(0, 30).to(30, 30),
+			Line.from(0, 10.5).to(30, 10.5),
+			Line.from(0, 20.5).to(30, 20.5),
+			Line.from(0, 30.5).to(30, 30.5),
 		]);
 	});
 

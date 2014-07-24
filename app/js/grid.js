@@ -16,7 +16,7 @@ function createColumnLines(width, height, cols) {
 		columnWidth = width / cols,
 		columnX;
 
-	for (columnX = columnWidth; columnX < width; columnX += columnWidth) {
+	for (columnX = columnWidth + 0.5; columnX < width; columnX += columnWidth) {
 		columnLines.push(Line.from(columnX, 0).to(columnX, height));
 	}
 
@@ -28,7 +28,7 @@ function createRowLines(width, height, rows) {
 		rowHeight = height / rows,
 		rowY;
 
-	for (rowY = rowHeight; rowY < height; rowY += rowHeight) {
+	for (rowY = rowHeight + 0.5; rowY < height; rowY += rowHeight) {
 		rowLines.push(Line.from(0, rowY).to(width, rowY));
 	}
 
