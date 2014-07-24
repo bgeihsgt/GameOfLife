@@ -37,7 +37,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('test', ['lint'], function() {
-	return gulp.src(allJsSources, { read: false })
+	return gulp.src(allJsSources.concat('!app/js/app.js'), { read: false })
 		.pipe(mocha({ reporter: 'list', globals: [should]}).on('error', handleTestError));	
 
 });
@@ -48,7 +48,7 @@ gulp.task('watch-tests', function() {
 });
 
 gulp.task('browserify', function() {
-	var bundleStream = browserify('./app/js/grid.js').bundle();
+	var bundleStream = browserify('./app/js/app.js').bundle();
 
 	return bundleStream
 		.pipe(source('app.js'))		
