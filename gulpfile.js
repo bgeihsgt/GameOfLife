@@ -2,6 +2,7 @@ var gulp = require('gulp'),
 	mocha = require('gulp-mocha'),
 	jshint = require('gulp-jshint'),
 	should = require('should'),
+	allJsSources = ['tests/**/*.js','app/**/*.js'],
 	watchingTests = false;
 
 function handleTestError(err) {
@@ -17,7 +18,7 @@ function handleTestError(err) {
 
 
 gulp.task('lint', function() {
-	return gulp.src(['tests/**/*.js','app/**/*.js', 'gulpfile.js'])
+	return gulp.src(allJsSources.concat('gulpfile.js'))
 			.pipe(jshint())
 			.pipe(jshint.reporter('default'))
 			.pipe(jshint.reporter('fail'));
@@ -25,14 +26,14 @@ gulp.task('lint', function() {
 });
 
 gulp.task('test', ['lint'], function() {
-	return gulp.src(['tests/**/*.js','app/**/*.js'], { read: false })
+	return gulp.src(allJsSources, { read: false })
 		.pipe(mocha({ reporter: 'list', globals: [should]}).on('error', handleTestError));	
 
 });
 
 gulp.task('watch-tests', function() {
 	watchingTests = true;
-	return gulp.watch(['tests/**/*.js','app/**/*.js'], ['test']);
+	return gulp.watch(allJsSources, ['test']);
 });
 
 gulp.task('build', ['test'], function() {
