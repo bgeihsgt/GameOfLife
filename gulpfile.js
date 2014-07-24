@@ -42,7 +42,7 @@ gulp.task('watch-tests', function() {
 	return gulp.watch(allJsSources, ['test']);
 });
 
-gulp.task('build', ['test'], function() {
+gulp.task('build', ['clean', 'test'], function() {
 	return gulp.src('app/index.html')
 		.pipe(gulp.dest('build'));
 }); 
