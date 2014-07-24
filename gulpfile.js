@@ -6,6 +6,8 @@ var gulp = require('gulp'),
 	source = require('vinyl-source-stream'),
 	rename = require('gulp-rename'),
 	browserify = require('browserify'),
+	uglify = require('gulp-uglify'),
+	streamify = require('gulp-streamify'),
 	allJsSources = ['tests/**/*.js','app/**/*.js'],
 	watchingTests = false;
 
@@ -50,6 +52,9 @@ gulp.task('browserify', function() {
 
 	return bundleStream
 		.pipe(source('app.js'))		
+		.pipe(gulp.dest('build'))
+		.pipe(streamify(uglify()))
+		.pipe(rename('app.min.js'))
 		.pipe(gulp.dest('build'));
 });
 
