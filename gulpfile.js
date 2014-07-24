@@ -2,6 +2,7 @@ var gulp = require('gulp'),
 	mocha = require('gulp-mocha'),
 	jshint = require('gulp-jshint'),
 	should = require('should'),
+	clean = require('gulp-clean'),
 	allJsSources = ['tests/**/*.js','app/**/*.js'],
 	watchingTests = false;
 
@@ -15,6 +16,11 @@ function handleTestError(err) {
 
 	process.exit(1);
 }
+
+gulp.task('clean', function() {
+	return gulp.src('build', { read: false })
+			.pipe(clean());	
+});
 
 
 gulp.task('lint', function() {
