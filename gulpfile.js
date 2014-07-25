@@ -9,6 +9,7 @@ var gulp = require('gulp'),
 	uglify = require('gulp-uglify'),
 	streamify = require('gulp-streamify'),
 	allJsSources = ['tests/**/*.js','app/**/*.js'],
+	allSources = allJsSources.concat('app/index.html'),
 	watchingTests = false;
 
 function handleTestError(err) {
@@ -42,9 +43,9 @@ gulp.task('test', ['lint'], function() {
 
 });
 
-gulp.task('watch-tests', function() {
+gulp.task('watch', function() {
 	watchingTests = true;
-	return gulp.watch(allJsSources, ['test']);
+	return gulp.watch(allSources, ['build']);
 });
 
 gulp.task('browserify', function() {
