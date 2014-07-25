@@ -9,7 +9,7 @@ describe('A Grid', function() {
 	var grid;
 
 	beforeEach(function() {
-		grid = Grid.forCanvas({
+		grid = Grid.create({
 			width: 30,
 			height: 40,
 			rows: 4,

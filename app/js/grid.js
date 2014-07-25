@@ -35,7 +35,7 @@ function createRowLines(width, height, rows) {
 	return rowLines;
 }
 
-Grid.forCanvas = function(options) {	
+Grid.create = function(options) {	
 
 	var columnLines = createColumnLines(options.width, options.height, options.cols);
 	var rowLines = createRowLines(options.width, options.height, options.rows);

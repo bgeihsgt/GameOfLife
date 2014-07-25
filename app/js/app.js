@@ -5,7 +5,7 @@ var Grid = require('./grid'),
 gameSurface = document.getElementById('game-surface');
 graphics2d = gameSurface.getContext('2d');
 
-Grid.forCanvas({
+Grid.create({
 	width: gameSurface.width,
 	height: gameSurface.height,
 	rows: 50,
