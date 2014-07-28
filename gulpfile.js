@@ -7,9 +7,12 @@ var gulp = require('gulp'),
 	rename = require('gulp-rename'),
 	browserify = require('browserify'),
 	uglify = require('gulp-uglify'),
+	sass = require('gulp-sass'),
+	minifyCss = require('gulp-minify-css'),
 	streamify = require('gulp-streamify'),
+	allSassSources = ['app/scss/**/*.scss'],
 	allJsSources = ['tests/**/*.js','app/**/*.js'],
-	allSources = allJsSources.concat('app/index.html'),
+	allSources = allJsSources.concat('app/index.html').concat(allSassSources),
 	watchingTests = false;
 
 function handleTestError(err) {
@@ -43,8 +46,16 @@ gulp.task('test', ['lint'], function() {
 
 });
 
+gulp.task('css', function() {
+	return gulp.src(allSassSources)
+			.pipe(sass())
+			.pipe(minifyCss())
+			.pipe(gulp.dest('app/css'));
+});
+
 gulp.task('watch', function() {
 	watchingTests = true;
+	
 	return gulp.watch(allSources, ['build']);
 });
 
@@ -59,7 +70,7 @@ gulp.task('browserify', function() {
 		.pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['clean', 'test', 'browserify'], function() {
-	return gulp.src('app/index.html')
+gulp.task('build', ['clean', 'test',  'css', 'browserify'], function() {
+	return gulp.src(['app/index.html', 'app/css/*.css'])
 		.pipe(gulp.dest('build'));
 }); 
