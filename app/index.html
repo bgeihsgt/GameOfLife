@@ -2,11 +2,16 @@
 <html>
 	<head>
 		<title>Game of Life JavaScript</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+
 		<link rel="stylesheet" type="text/css" href="app.css"></link>
 	</head>
 	<body>
-		<main>
-			<canvas id="game-surface" width="400" height="500">Canvas not supported in this browser</canvas>
+		<header class="container-fluid">
+			<h1 class="page-header">Conway's Game of Life<br><small>in JavaScript</small></h1>
+		</header>
+		<main role="main" class="container-fluid">
+			<canvas id="game-surface" width="300" height="360"></canvas>
 		</main>
 		<script src="app.min.js"></script>
 	</body>

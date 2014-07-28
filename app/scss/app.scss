@@ -1,2 +1,25 @@
 @import '../../node_modules/bootstrap-sass/assets/stylesheets/bootstrap/bootstrap.scss';
 
+body {
+	font-size: 16px;
+}
+
+p {
+	font-size: 0.875em;
+}
+
+.container-fluid {
+	max-width: 1180px;
+}
+
+.page-header {
+	margin-top: 20px;
+	font-size: 1.5em;
+}
+
+#game-surface {
+	border: 1px solid black;
+	margin: 0 auto;
+	width: 302px;
+	height: 362px;
+}
