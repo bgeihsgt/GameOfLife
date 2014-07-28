@@ -11,9 +11,9 @@ Grid.prototype.draw = function(g) {
 };
 
 
-function createColumnLines(width, height, cols) {
+function createColumnLines(width, height, cellWidth) {
 	var columnLines = [],
-		columnWidth = width / cols,
+		columnWidth = cellWidth,
 		columnX;
 
 	for (columnX = columnWidth + 0.5; columnX < width; columnX += columnWidth) {
@@ -23,9 +23,9 @@ function createColumnLines(width, height, cols) {
 	return columnLines;
 }
 
-function createRowLines(width, height, rows) {
+function createRowLines(width, height, cellHeight) {
 	var rowLines = [],
-		rowHeight = height / rows,
+		rowHeight = cellHeight,
 		rowY;
 
 	for (rowY = rowHeight + 0.5; rowY < height; rowY += rowHeight) {
@@ -37,8 +37,8 @@ function createRowLines(width, height, rows) {
 
 Grid.create = function(options) {	
 
-	var columnLines = createColumnLines(options.width, options.height, options.cols);
-	var rowLines = createRowLines(options.width, options.height, options.rows);
+	var columnLines = createColumnLines(options.width, options.height, options.cellWidth);
+	var rowLines = createRowLines(options.width, options.height, options.cellHeight);
 
 	return new Grid({
 		columnLines: columnLines,

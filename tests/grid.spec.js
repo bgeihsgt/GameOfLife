@@ -12,8 +12,8 @@ describe('A Grid', function() {
 		grid = Grid.create({
 			width: 30,
 			height: 40,
-			rows: 4,
-			cols: 5
+			cellWidth: 6,
+			cellHeight: 10
 		});
 	});
 
