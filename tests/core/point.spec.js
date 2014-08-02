@@ -1,11 +1,11 @@
-var Point = require('../../app/js/point.js');
+var Point = require('../../app/js/core/point.js');
 
 describe('A point', function() {
 
 	var point;
 
 	beforeEach(function() {
-		point = new Point(3, 4);
+		point = new Point(3, 4); 
 	});
 
 

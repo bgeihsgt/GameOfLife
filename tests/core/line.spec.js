@@ -1,5 +1,5 @@
-var Point = require('../../app/js/point.js'),
-	Line = require('../../app/js/line.js'),
+var Point = require('../../app/js/core/point.js'),
+	Line = require('../../app/js/core/line.js'),
     MockGraphics2d = require('./mockgraphics2d.js'),
     DrawingInstruction = require('./drawinginstruction.js');
 

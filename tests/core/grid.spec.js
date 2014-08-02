@@ -1,5 +1,5 @@
-var Grid = require('../../app/js/grid.js'),
-	Line = require('../../app/js/line.js'),
+var Grid = require('../../app/js/core/grid.js'),
+	Line = require('../../app/js/core/line.js'),
     MockGraphics2d = require('./mockgraphics2d.js'),
     DrawingInstruction = require('./drawinginstruction.js');
 
@@ -22,7 +22,7 @@ describe('A Grid', function() {
 			Line.from(6.5, 0).to(6.5, 40),
 			Line.from(12.5, 0).to(12.5, 40),
 			Line.from(18.5, 0).to(18.5, 40),
-			Line.from(24.5, 0).to(24.5, 40)
+			Line.from(24.5, 0).to(24.5, 40) 
 		]);
 	});
 

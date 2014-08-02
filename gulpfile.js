@@ -15,7 +15,7 @@ var gulp = require('gulp'),
 	allCoreSources = ['tests/core/**/*.js','app/**/*.js'],
 	allUiSources = ['tests/ui/**/*.js'],
 	allJsSources = allCoreSources.concat(allUiSources),
-	allSources = allCoreSources.concat('app/index.html').concat(allSassSources),
+	allSources = allJsSources.concat('app/index.html').concat(allSassSources),
 	watchingTests = false;
 
 function handleTestError(err) {
@@ -44,7 +44,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('test', ['lint'], function() {
-	return gulp.src(allCoreSources.concat('!app/js/app.js'), { read: false })
+	return gulp.src(allCoreSources.concat('!app/js/core/app.js'), { read: false })
 		.pipe(mocha({ reporter: 'list', globals: [should]}).on('error', handleTestError));	
 
 });
@@ -64,11 +64,11 @@ gulp.task('css', function() {
 gulp.task('watch', function() {
 	watchingTests = true;
 	
-	return gulp.watch(allSources, ['build']);
+	gulp.watch(allSources, ['build']);
 });
 
 gulp.task('browserify', function() {
-	var bundleStream = browserify('./app/js/app.js').bundle();
+	var bundleStream = browserify('./app/js/core/app.js').bundle();
 
 	return bundleStream
 		.pipe(source('app.js'))		
@@ -78,7 +78,7 @@ gulp.task('browserify', function() {
 		.pipe(gulp.dest('build'));
 });
 
-gulp.task('build', ['clean', 'test',  'css', 'browserify'], function() {
+gulp.task('build', ['clean', 'test', 'uitests', 'css', 'browserify'], function() {
 	return gulp.src(['app/index.html', 'app/css/*.css'])
 		.pipe(gulp.dest('build'));
 }); 
