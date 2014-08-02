@@ -10,8 +10,11 @@ var gulp = require('gulp'),
 	sass = require('gulp-sass'),
 	minifyCss = require('gulp-minify-css'),
 	streamify = require('gulp-streamify'),
+	mochaPhantomJs = require('gulp-mocha-phantomjs'),
 	allSassSources = ['app/scss/**/*.scss'],
 	allCoreSources = ['tests/core/**/*.js','app/**/*.js'],
+	allUiSources = ['tests/ui/**/*.js'],
+	allJsSources = allCoreSources.concat(allUiSources),
 	allSources = allCoreSources.concat('app/index.html').concat(allSassSources),
 	watchingTests = false;
 
@@ -33,7 +36,7 @@ gulp.task('clean', function() {
 
 
 gulp.task('lint', function() {
-	return gulp.src(allCoreSources.concat('gulpfile.js'))
+	return gulp.src(allJsSources.concat('gulpfile.js'))
 			.pipe(jshint())
 			.pipe(jshint.reporter('default'))
 			.pipe(jshint.reporter('fail'));
@@ -44,6 +47,11 @@ gulp.task('test', ['lint'], function() {
 	return gulp.src(allCoreSources.concat('!app/js/app.js'), { read: false })
 		.pipe(mocha({ reporter: 'list', globals: [should]}).on('error', handleTestError));	
 
+});
+
+gulp.task('uitests', ['lint'], function() {
+	return gulp.src('tests/ui/runner.html')
+		.pipe(mochaPhantomJs());
 });
 
 gulp.task('css', function() {

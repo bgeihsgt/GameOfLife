@@ -1,0 +1,16 @@
+{
+  "name": "GameOfLife",
+  "version": "0.1.0",
+  "authors": [
+    "Brian Geihsler <brian@bitgeyser.net>"
+  ],
+  "description": "GameOfLife that works across all devices and viewports",
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}
