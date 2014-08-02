@@ -11,8 +11,8 @@ var gulp = require('gulp'),
 	minifyCss = require('gulp-minify-css'),
 	streamify = require('gulp-streamify'),
 	allSassSources = ['app/scss/**/*.scss'],
-	allJsSources = ['tests/**/*.js','app/**/*.js'],
-	allSources = allJsSources.concat('app/index.html').concat(allSassSources),
+	allCoreSources = ['tests/core/**/*.js','app/**/*.js'],
+	allSources = allCoreSources.concat('app/index.html').concat(allSassSources),
 	watchingTests = false;
 
 function handleTestError(err) {
@@ -33,7 +33,7 @@ gulp.task('clean', function() {
 
 
 gulp.task('lint', function() {
-	return gulp.src(allJsSources.concat('gulpfile.js'))
+	return gulp.src(allCoreSources.concat('gulpfile.js'))
 			.pipe(jshint())
 			.pipe(jshint.reporter('default'))
 			.pipe(jshint.reporter('fail'));
@@ -41,7 +41,7 @@ gulp.task('lint', function() {
 });
 
 gulp.task('test', ['lint'], function() {
-	return gulp.src(allJsSources.concat('!app/js/app.js'), { read: false })
+	return gulp.src(allCoreSources.concat('!app/js/app.js'), { read: false })
 		.pipe(mocha({ reporter: 'list', globals: [should]}).on('error', handleTestError));	
 
 });

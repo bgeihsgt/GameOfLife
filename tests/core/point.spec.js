@@ -1,4 +1,4 @@
-var Point = require('../app/js/point.js');
+var Point = require('../../app/js/point.js');
 
 describe('A point', function() {
 

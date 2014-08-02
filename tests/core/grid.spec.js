@@ -1,5 +1,5 @@
-var Grid = require('../app/js/grid.js'),
-	Line = require('../app/js/line.js'),
+var Grid = require('../../app/js/grid.js'),
+	Line = require('../../app/js/line.js'),
     MockGraphics2d = require('./mockgraphics2d.js'),
     DrawingInstruction = require('./drawinginstruction.js');
 

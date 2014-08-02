@@ -4,7 +4,7 @@ describe('A responsive canvas', function() {
 
 		it('should create the canvas element inside the container', function() {
 
-		});
+		}); 
 
 	});
 
