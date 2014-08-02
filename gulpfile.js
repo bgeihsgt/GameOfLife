@@ -11,6 +11,9 @@ var gulp = require('gulp'),
 	minifyCss = require('gulp-minify-css'),
 	streamify = require('gulp-streamify'),
 	mochaPhantomJs = require('gulp-mocha-phantomjs'),
+	tap = require('gulp-tap'),
+	fs = require('fs'),
+	S = require('string'),
 	allSassSources = ['app/scss/**/*.scss'],
 	allCoreSources = ['tests/core/**/*.js','app/**/*.js'],
 	allUiSources = ['tests/ui/**/*.js'],
@@ -30,7 +33,7 @@ function handleTestError(err) {
 }
 
 gulp.task('clean', function() {
-	return gulp.src('build', { read: false })
+	return gulp.src(['build', 'testoutput'], { read: false })
 			.pipe(clean());	
 });
 
@@ -49,9 +52,22 @@ gulp.task('test', ['lint'], function() {
 
 });
 
-gulp.task('uitests', ['lint'], function() {
+gulp.task('uitests', ['lint', 'browserify-uitests'], function() {
 	return gulp.src('tests/ui/runner.html')
 		.pipe(mochaPhantomJs());
+});
+
+gulp.task('browserify-uitests', function() {
+	var specFilenames = fs.readdirSync('tests/ui').filter(function(filename) {
+		return S(filename).endsWith('.spec.js');
+	});
+
+	specFilenames.forEach(function(specFilename) {
+		var bundleStream = browserify('./tests/ui/' + specFilename).bundle();
+		bundleStream
+		.pipe(source(specFilename))		
+		.pipe(gulp.dest('testoutput'));
+	})
 });
 
 gulp.task('css', function() {
