@@ -54,6 +54,7 @@ gulp.task('test', ['lint'], function() {
 
 gulp.task('uitests', ['lint', 'browserify-uitests'], function() {
 	return gulp.src('tests/ui/runner.html')
+		 .pipe(gulp.dest('testoutput'))
 		.pipe(mochaPhantomJs());
 });
 
@@ -67,7 +68,7 @@ gulp.task('browserify-uitests', function() {
 		bundleStream
 		.pipe(source(specFilename))		
 		.pipe(gulp.dest('testoutput'));
-	})
+	});
 });
 
 gulp.task('css', function() {

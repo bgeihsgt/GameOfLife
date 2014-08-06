@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "description": "Game of life implemented using HTML5 Canvas using TDD",
   "main": "gulpfile.js",
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "gulp": "~3.8.6",
     "gulp-mocha": "^0.5.0",
