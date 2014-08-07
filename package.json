@@ -4,6 +4,7 @@
   "description": "Game of life implemented using HTML5 Canvas using TDD",
   "main": "gulpfile.js",
   "dependencies": {
+    "signals": "^1.0.0"
   },
   "devDependencies": {
     "gulp": "~3.8.6",
