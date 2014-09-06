@@ -1,15 +1,24 @@
 var Grid = require('./grid'),
+	ResponsiveCanvas = require('../ui/ResponsiveCanvas.js'),
 	gameSurface,
-	graphics2d;
+	responsiveCanvas;
 	
-gameSurface = document.getElementById('game-surface');
-graphics2d = gameSurface.getContext('2d');
+	gameSurface = document.getElementById('game-surface');
+	responsiveCanvas = ResponsiveCanvas.create(gameSurface);
 
-Grid.create({
-	width: gameSurface.width,
-	height: gameSurface.height,
-	cellWidth: 20,
-	cellHeight: 20
-}).draw(graphics2d);
+	responsiveCanvas.resized.add(function(g, width, height) {
+
+		Grid.create({
+			width: width,
+			height: height,
+			cellWidth: 20,
+			cellHeight: 20
+		}).draw(g);
+	});
+
+	responsiveCanvas.resize();
+
+
+
 
 
