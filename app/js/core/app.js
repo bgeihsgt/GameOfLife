@@ -4,7 +4,10 @@ var Grid = require('./grid'),
 	responsiveCanvas;
 	
 	gameSurface = document.getElementById('game-surface');
-	responsiveCanvas = ResponsiveCanvas.create(gameSurface);
+	responsiveCanvas = ResponsiveCanvas.create(gameSurface, {
+		roundWidthDownToNearest: 20,
+		roundHeightDownToNearest: 20
+	});
 
 	responsiveCanvas.resized.add(function(g, width, height) {
 
