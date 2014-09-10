@@ -37,7 +37,7 @@ ResponsiveCanvas.prototype._updateSizeAttributes = function() {
 	this.canvasElement.style.height = height.toPx();
 
 	this.canvasElement.width = this.canvasElement.clientWidth;
-	this.canvasElement.height = this.canvasElement.clientHeight;	
+	this.canvasElement.height = this.canvasElement.clientHeight;
 };
 
 ResponsiveCanvas.prototype._removePreviousInlineUpdates = function() {
