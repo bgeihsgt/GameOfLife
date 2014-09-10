@@ -30,14 +30,14 @@ ResponsiveCanvas.prototype.resize = function() {
 ResponsiveCanvas.prototype._updateSizeAttributes = function() {
 	this._removePreviousInlineUpdates();
 	
-	var width = new Pixels(this.canvasElement.offsetWidth, this.options.roundWidthDownToNearest);
-	var height = new Pixels(this.canvasElement.offsetHeight, this.options.roundHeightDownToNearest);
+	var width = new Pixels(this.canvasElement.clientWidth, this.options.roundWidthDownToNearest);
+	var height = new Pixels(this.canvasElement.clientHeight, this.options.roundHeightDownToNearest);
 	
 	this.canvasElement.style.width = width.toPx();	
 	this.canvasElement.style.height = height.toPx();
 
-	this.canvasElement.width = this.canvasElement.offsetWidth;
-	this.canvasElement.height = this.canvasElement.offsetHeight;	
+	this.canvasElement.width = this.canvasElement.clientWidth;
+	this.canvasElement.height = this.canvasElement.clientHeight;	
 };
 
 ResponsiveCanvas.prototype._removePreviousInlineUpdates = function() {

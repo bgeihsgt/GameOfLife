@@ -8,7 +8,7 @@ describe('A responsive canvas', function() {
 		style;
 
 	beforeEach(function() {
-		var css = '#canvas-element { width: 100%; height: 100%; }';
+		var css = '#canvas-element { width: 100%; height: 100%; border: 1px solid black; box-sizing: content-box; }';
 
 		style = document.createElement('style');
 		style.appendChild(document.createTextNode(css));
@@ -41,13 +41,13 @@ describe('A responsive canvas', function() {
 		describe('when initialized', function() {
 
 			it('should set the width of its canvas element to the canvas element style width', function() {
-				canvasElement.offsetWidth.should.equal(501);
-				canvasElement.width.should.equal(canvasElement.offsetWidth);				
+				canvasElement.clientWidth.should.equal(501);
+				canvasElement.width.should.equal(canvasElement.clientWidth);				
 			});
 
 			it('should set the height of its canvas element to the canvas element style height', function() {
-				canvasElement.offsetHeight.should.be.greaterThan(0);
-				canvasElement.height.should.equal(canvasElement.offsetHeight);
+				canvasElement.clientHeight.should.be.greaterThan(0);
+				canvasElement.height.should.equal(canvasElement.clientHeight);
 			});
 
 		});
@@ -72,13 +72,13 @@ describe('A responsive canvas', function() {
 			});
 
 			it('should set the canvas width to the given width', function() {
-				canvasElement.offsetWidth.should.equal(101);
-				canvasElement.width.should.equal(canvasElement.offsetWidth);
+				canvasElement.clientWidth.should.equal(101);
+				canvasElement.width.should.equal(canvasElement.clientWidth);
 			});
 
 			it('should set the canvas height to the given height', function() {
-				canvasElement.offsetHeight.should.equal(307);
-				canvasElement.height.should.equal(canvasElement.offsetHeight);
+				canvasElement.clientHeight.should.equal(307);
+				canvasElement.height.should.equal(canvasElement.clientHeight);
 			});
 
 			it('should fire the resized event with the proper parameters', function() {
@@ -105,12 +105,12 @@ describe('A responsive canvas', function() {
 		});
 		
 		it('should round the width down to the given configuration', function() {			
-			canvasElement.offsetWidth.should.equal(180);
+			canvasElement.clientWidth.should.equal(180);
 			canvasElement.width.should.equal(180);
 		});
 
 		it('should round the height down to the given configuration', function() {			
-			canvasElement.offsetHeight.should.equal(200);
+			canvasElement.clientHeight.should.equal(200);
 			canvasElement.height.should.equal(200);
 		});
 
