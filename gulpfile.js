@@ -11,6 +11,8 @@ var gulp = require('gulp'),
 	minifyCss = require('gulp-minify-css'),
 	streamify = require('gulp-streamify'),
 	mochaPhantomJs = require('gulp-mocha-phantomjs'),
+	ftp = require('gulp-ftp'),
+	prompt = require('gulp-prompt'),
 	tap = require('gulp-tap'),
 	fs = require('fs'),
 	S = require('string'),
@@ -99,3 +101,31 @@ gulp.task('build', ['clean', 'test', 'uitests', 'css', 'browserify'], function()
 	return gulp.src(['app/index.html', 'app/css/*.css'])
 		.pipe(gulp.dest('build'));
 }); 
+
+gulp.task('deploy', ['build'], function(done) {
+	gulp.src('package.json')
+		.pipe(prompt.prompt([{
+			type: 'input',
+			name: 'host',
+			message: 'FTP host:'
+		},
+		{
+			type: 'input',
+			name: 'username',
+			message: 'FTP username:'
+		}, 
+		{
+			type: 'password',
+			name: 'password',
+			message: 'FTP password:'
+		}], function(result){
+			gulp.src('build/**/*')
+				.pipe(ftp({
+					host: result.host,
+					user: result.username,
+					pass: result.password
+				}));
+
+				done();
+			}));
+});

@@ -22,7 +22,8 @@
     "gulp-mocha-phantomjs": "^0.3.0",
     "gulp-tap": "^0.1.1",
     "string": "^1.9.0",
-    "gulp-ftp": "^1.0.1"
+    "gulp-ftp": "^1.0.1",
+    "gulp-prompt": "^0.1.1"
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
