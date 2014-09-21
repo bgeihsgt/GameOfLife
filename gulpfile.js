@@ -12,7 +12,6 @@ var gulp = require('gulp'),
 	streamify = require('gulp-streamify'),
 	mochaPhantomJs = require('gulp-mocha-phantomjs'),
 	ftp = require('gulp-ftp'),
-	prompt = require('gulp-prompt'),
 	tap = require('gulp-tap'),
 	fs = require('fs'),
 	S = require('string'),
@@ -102,30 +101,13 @@ gulp.task('build', ['clean', 'test', 'uitests', 'css', 'browserify'], function()
 		.pipe(gulp.dest('build'));
 }); 
 
-gulp.task('deploy', ['build'], function(done) {
-	gulp.src('package.json')
-		.pipe(prompt.prompt([{
-			type: 'input',
-			name: 'host',
-			message: 'FTP host:'
-		},
-		{
-			type: 'input',
-			name: 'username',
-			message: 'FTP username:'
-		}, 
-		{
-			type: 'password',
-			name: 'password',
-			message: 'FTP password:'
-		}], function(result){
-			gulp.src('build/**/*')
-				.pipe(ftp({
-					host: result.host,
-					user: result.username,
-					pass: result.password
-				}));
+gulp.task('deploy', ['build'], function() {
+	var ftpInfo = JSON.parse(fs.readFileSync('ftp.json', 'utf-8'));
 
-				done();
-			}));
+	return gulp.src('build/**/*')
+		.pipe(ftp({
+			host: ftpInfo.host,
+			user: ftpInfo.username,
+			pass: ftpInfo.password
+		}));
 });
