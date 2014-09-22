@@ -30,8 +30,8 @@ ResponsiveCanvas.prototype.resize = function() {
 ResponsiveCanvas.prototype._updateSizeAttributes = function() {
 	this._removePreviousInlineUpdates();
 	
-	var width = new Pixels(this.canvasElement.clientWidth, this.options.roundWidthDownToNearest);
-	var height = new Pixels(this.canvasElement.clientHeight, this.options.roundHeightDownToNearest);
+	var width = new Pixels(this.canvasElement.clientWidth, this.options.roundWidthDownToNearest),
+		height = new Pixels(this.canvasElement.clientHeight, this.options.roundHeightDownToNearest);
 	
 	this.canvasElement.style.width = width.toPx();	
 	this.canvasElement.style.height = height.toPx();
