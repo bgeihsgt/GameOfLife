@@ -1,6 +1,7 @@
-var Grid = require('./grid'),
+var GameOfLife = require('./gameoflife.js'),
 	ResponsiveCanvas = require('../ui/ResponsiveCanvas.js'),
 	gameSurface,
+	game,
 	responsiveCanvas;
 	
 	gameSurface = document.getElementById('game-surface');
@@ -9,9 +10,11 @@ var Grid = require('./grid'),
 		roundHeightDownToNearest: 20
 	});
 
+	game = new GameOfLife();
+
 	responsiveCanvas.resized.add(function(g, width, height) {
 
-		Grid.create({
+		game.toScene({
 			width: width,
 			height: height,
 			cellWidth: 20,
