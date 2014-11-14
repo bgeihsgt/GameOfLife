@@ -21,6 +21,7 @@ var ResponsiveCanvas = function(canvasElement, options) {
 
 	this.resized = new Signal();
 	this.clicked = new Signal();
+	this.mousedown = new Signal();
 };
 
 ResponsiveCanvas.prototype.resize = function() {
@@ -31,6 +32,10 @@ ResponsiveCanvas.prototype.resize = function() {
 
 ResponsiveCanvas.prototype.click = function(x, y) {
 	this.clicked.dispatch(new Point(x, y));
+};
+
+ResponsiveCanvas.prototype.signalMouseDown = function(x, y) {
+	this.mousedown.dispatch(new Point(x, y));
 };
 
 ResponsiveCanvas.prototype._updateSizeAttributes = function() {
@@ -56,6 +61,14 @@ ResponsiveCanvas.create = function(canvasElement, options) {
 
 	window.addEventListener('resize', function() {
 		responsiveCanvas.resize();
+	});
+
+	canvasElement.addEventListener('click', function(e){
+		responsiveCanvas.click(e.offsetX, e.offsetY);
+	});
+
+	canvasElement.addEventListener('mousedown', function(e){
+		responsiveCanvas.signalMouseDown(e.offsetX, e.offsetY);
 	});
 
 	return responsiveCanvas;

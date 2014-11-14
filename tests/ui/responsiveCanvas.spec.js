@@ -107,6 +107,25 @@ describe('A responsive canvas', function() {
 			});
 		});
 
+		describe('when mouse down', function() {
+
+			var actualCoordinates;
+
+			beforeEach(function() {
+				responsiveCanvas.mousedown.add(function(coordinates) {
+					actualCoordinates = coordinates;
+				});
+
+				responsiveCanvas.signalMouseDown(7, 9);
+			});
+
+
+			it('should fire the clicked event with the clicked coordinates', function() {
+				actualCoordinates.x.should.equal(7);
+				actualCoordinates.y.should.equal(9);
+			});
+		});
+
 
 		
 	});

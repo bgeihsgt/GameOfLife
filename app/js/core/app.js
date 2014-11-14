@@ -22,6 +22,10 @@ var GameOfLife = require('./gameoflife.js'),
 		}).draw(g);
 	});
 
+	responsiveCanvas.mousedown.add(function(coordinates) {
+		console.log(coordinates);
+	});
+
 	responsiveCanvas.resize();
 
 
