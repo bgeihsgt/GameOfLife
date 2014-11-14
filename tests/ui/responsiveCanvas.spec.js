@@ -46,7 +46,7 @@ describe('A responsive canvas', function() {
 			});
 
 			it('should set the height of its canvas element to the canvas element style height', function() {
-				canvasElement.clientHeight.should.be.greaterThan(0);
+				canvasElement.clientHeight.should.equal(809);
 				canvasElement.height.should.equal(canvasElement.clientHeight);
 			});
 
