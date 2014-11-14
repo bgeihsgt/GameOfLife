@@ -97,7 +97,7 @@ describe('A responsive canvas', function() {
 					actualCoordinates = coordinates;
 				});
 
-				responsiveCanvas.click(7, 9);
+				responsiveCanvas.signalClick(7, 9);
 			});
 
 
@@ -112,7 +112,7 @@ describe('A responsive canvas', function() {
 			var actualCoordinates;
 
 			beforeEach(function() {
-				responsiveCanvas.mousedown.add(function(coordinates) {
+				responsiveCanvas.mouseWentDown.add(function(coordinates) {
 					actualCoordinates = coordinates;
 				});
 
@@ -131,7 +131,7 @@ describe('A responsive canvas', function() {
 			var actualCoordinates;
 
 			beforeEach(function() {
-				responsiveCanvas.mouseup.add(function(coordinates) {
+				responsiveCanvas.mouseWentUp.add(function(coordinates) {
 					actualCoordinates = coordinates;
 				});
 
@@ -150,7 +150,7 @@ describe('A responsive canvas', function() {
 			var actualCoordinates;
 
 			beforeEach(function() {
-				responsiveCanvas.mousemoved.add(function(coordinates) {
+				responsiveCanvas.mouseMoved.add(function(coordinates) {
 					actualCoordinates = coordinates;
 				});
 
