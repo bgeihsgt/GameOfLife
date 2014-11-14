@@ -19,3 +19,14 @@ module.exports.stroke = function() {
 		type: 'stroke'
 	};
 };
+
+module.exports.fillRect = function(x, y, width, height, fillStyle) {
+	return {
+		type: 'fillRect',
+		x: x,
+		y: y,
+		width: width,
+		height: height,
+		fillStyle: fillStyle
+	};
+};
