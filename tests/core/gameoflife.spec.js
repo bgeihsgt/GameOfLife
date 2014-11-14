@@ -1,5 +1,6 @@
 var GameOfLife = require('../../app/js/core/gameoflife.js');
 var Grid = require('../../app/js/core/grid.js');
+var Cell = require('../../app/js/core/cell.js');
 
 describe('A game of life', function() {
 
@@ -33,7 +34,20 @@ describe('A game of life', function() {
 				]);
 			});
 
-		});		
+		});
+
+		describe('then adding a cell', function() {
+
+			beforeEach(function() {
+				gameOfLife.addCell(new Cell(4, 5));
+			});
+
+			it('should have the cell in its living cells collection', function() {
+				gameOfLife.livingCells[0].x.should.equal(4);
+				gameOfLife.livingCells[0].y.should.equal(5);
+			});
+
+		});
 
 	});
 
