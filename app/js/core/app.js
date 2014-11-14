@@ -26,6 +26,10 @@ var GameOfLife = require('./gameoflife.js'),
 		console.log(coordinates);
 	});
 
+	responsiveCanvas.mouseup.add(function(coordinates) {
+		console.log(coordinates);
+	});
+
 	responsiveCanvas.resize();
 
 
