@@ -1,4 +1,5 @@
-var Signal = require('signals');
+var Signal = require('signals'),
+	Point = require('../core/point.js');
 
 var Pixels = function(value, roundDownToNearest) {
 	this.value = value;
@@ -19,12 +20,17 @@ var ResponsiveCanvas = function(canvasElement, options) {
 	this._updateSizeAttributes();
 
 	this.resized = new Signal();
+	this.clicked = new Signal();
 };
 
 ResponsiveCanvas.prototype.resize = function() {
 	this._updateSizeAttributes();
 
 	this.resized.dispatch(this.canvasElement.getContext('2d'), this.canvasElement.width, this.canvasElement.height);
+};
+
+ResponsiveCanvas.prototype.click = function(x, y) {
+	this.clicked.dispatch(new Point(x, y));
 };
 
 ResponsiveCanvas.prototype._updateSizeAttributes = function() {
