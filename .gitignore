@@ -3,3 +3,4 @@ build
 bower_components
 testoutput
 ftp.json
+npm-debug.log

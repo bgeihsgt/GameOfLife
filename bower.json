@@ -12,5 +12,11 @@
     "bower_components",
     "test",
     "tests"
-  ]
+  ],
+  "homepage": "https://github.com/bgeihsgt/GameOfLife",
+  "private": true,
+  "dependencies": {
+    "mocha": "~2.0.1",
+    "should": "~4.3.0"
+  }
 }
