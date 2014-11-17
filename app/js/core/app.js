@@ -1,5 +1,6 @@
 var GameOfLife = require('./gameoflife.js'),
 	ResponsiveCanvas = require('../ui/ResponsiveCanvas.js'),
+	Cell = require('./cell.js'),
 	gameSurface,
 	game,
 	responsiveCanvas;
@@ -11,6 +12,7 @@ var GameOfLife = require('./gameoflife.js'),
 	});
 
 	game = new GameOfLife();
+	game.addCell(new Cell(3,3));
 
 	responsiveCanvas.resized.add(function(g, width, height) {
 
@@ -18,7 +20,8 @@ var GameOfLife = require('./gameoflife.js'),
 			width: width,
 			height: height,
 			cellWidth: 20,
-			cellHeight: 20
+			cellHeight: 20,
+			livingCellColor: '#cccccc'
 		}).draw(g);
 	});
 

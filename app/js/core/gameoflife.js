@@ -10,7 +10,13 @@ GameOfLife.prototype.addCell = function(cell) {
 };
 
 GameOfLife.prototype.toScene = function(options) {
-	return new Scene([Grid.create(options)]);
+	var cellRectangles = this.livingCells.map(function(cell) {
+		return cell.toRectangle(options.cellWidth, options.cellHeight, options.livingCellColor);
+	}),
+	grid = [Grid.create(options)],
+	drawables = cellRectangles.concat(grid);
+
+	return new Scene(drawables);
 };
 
 module.exports = GameOfLife;

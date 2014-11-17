@@ -38,13 +38,43 @@ describe('A game of life', function() {
 
 		describe('then adding a cell', function() {
 
+			var cell;
+
 			beforeEach(function() {
-				gameOfLife.addCell(new Cell(4, 5));
+				cell = new Cell(4, 5);
+
+				gameOfLife.addCell(cell);
 			});
 
 			it('should have the cell in its living cells collection', function() {
 				gameOfLife.livingCells[0].x.should.equal(4);
 				gameOfLife.livingCells[0].y.should.equal(5);
+			});
+
+			describe('then rendering', function() {
+
+				var sceneOptions,
+					scene;
+
+				beforeEach(function() {
+					sceneOptions = {
+						width: 145,
+						height: 987,
+						cellWidth: 45,
+						cellHeight: 32,
+						livingCellColor: '#123456'
+					};
+
+					scene = gameOfLife.toScene(sceneOptions);
+				});
+
+				it('should convert the cell to a rectangle and add it to the scene', function() {
+					scene.drawables.should.eql([
+						cell.toRectangle(45, 32, '#123456'),
+						Grid.create(sceneOptions)						
+					]);
+				});
+
 			});
 
 		});
