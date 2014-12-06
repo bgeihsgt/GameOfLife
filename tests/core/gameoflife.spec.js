@@ -36,14 +36,14 @@ describe('A game of life', function() {
 
 		});
 
-		describe('then adding a cell', function() {
+		describe('then toggling a cell', function() {
 
 			var cell;
 
 			beforeEach(function() {
 				cell = new Cell(4, 5);
 
-				gameOfLife.addCell(cell);
+				gameOfLife.toggleCell(cell);
 			});
 
 			it('should have the cell in its living cells collection', function() {
@@ -73,6 +73,35 @@ describe('A game of life', function() {
 						cell.toRectangle(45, 32, '#123456'),
 						Grid.create(sceneOptions)						
 					]);
+				});
+
+			});
+
+			describe('then toggling a different cell', function() {
+
+				beforeEach(function() {
+					cell = new Cell(5, 5);
+
+					gameOfLife.toggleCell(cell);
+				});
+
+				it('should add the cell to the living cells collection', function() {
+					gameOfLife.livingCells[1].x.should.equal(5);
+					gameOfLife.livingCells[1].y.should.equal(5);
+				});
+
+			});
+
+			describe('then toggling the same cell', function() {
+
+				beforeEach(function() {
+					cell = new Cell(4, 5);
+
+					gameOfLife.toggleCell(cell);
+				});
+
+				it('should remove that cell from the living cells collection', function() {
+					gameOfLife.livingCells.should.have.lengthOf(0);
 				});
 
 			});

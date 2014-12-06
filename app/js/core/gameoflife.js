@@ -5,8 +5,18 @@ var GameOfLife = function() {
 	this.livingCells = [];
 };
 
-GameOfLife.prototype.addCell = function(cell) {
-	this.livingCells.push(cell);
+GameOfLife.prototype.toggleCell = function(cell) {
+	var originalLength = this.livingCells.length;
+
+	var newCells = this.livingCells.filter(function(item) {
+		return !item.equals(cell);
+	});
+
+	if (newCells.length === originalLength) {
+		newCells.push(cell);
+	}
+
+	this.livingCells = newCells;
 };
 
 GameOfLife.prototype.toScene = function(options) {
@@ -17,6 +27,16 @@ GameOfLife.prototype.toScene = function(options) {
 	drawables = cellRectangles.concat(grid);
 
 	return new Scene(drawables);
+};
+
+GameOfLife.prototype._findCell = function(cell) {
+	var matchingCell = this.livingCells.filter(function(item) {
+		if (item.equals(cell)) {
+			return true;
+		}
+	});
+
+	return matchingCell[0];
 };
 
 module.exports = GameOfLife;

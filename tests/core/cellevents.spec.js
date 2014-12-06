@@ -15,8 +15,8 @@ describe('Cell events', function() {
 		beforeEach(function() {
 			toggledCells = [];
 
-			cellEvents.cellToggled.add(function(x, y) {
-				toggledCells.push({x: x, y: y});
+			cellEvents.cellToggled.add(function(cell) {
+				toggledCells.push(cell);
 			});
 		});
 

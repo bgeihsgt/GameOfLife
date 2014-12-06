@@ -1,8 +1,10 @@
 var GameOfLife = require('./gameoflife.js'),
 	ResponsiveCanvas = require('../ui/ResponsiveCanvas.js'),
 	Cell = require('./cell.js'),
+	CellEvents = require('./cellevents.js'),
 	gameSurface,
 	game,
+	cellEvents,
 	responsiveCanvas;
 	
 	gameSurface = document.getElementById('game-surface');
@@ -12,7 +14,14 @@ var GameOfLife = require('./gameoflife.js'),
 	});
 
 	game = new GameOfLife();
-	game.addCell(new Cell(3,3));
+	cellEvents = new CellEvents({
+		cellWidth: 20,
+		cellHeight: 20
+	});
+
+	cellEvents.cellToggled.add(function(cell) {
+		game.toggleCell(cell);
+	});
 
 	responsiveCanvas.resized.add(function(g, width, height) {
 
@@ -26,15 +35,15 @@ var GameOfLife = require('./gameoflife.js'),
 	});
 
 	responsiveCanvas.mouseWentDown.add(function(coordinates) {
-		console.log(coordinates);
+		cellEvents.handleMouseDown(coordinates.x, coordinates.y);
 	});
 
 	responsiveCanvas.mouseWentUp.add(function(coordinates) {
-		console.log(coordinates);
+		cellEvents.handleMouseUp(coordinates.x, coordinates.y);
 	});
 
 	responsiveCanvas.mouseMoved.add(function(coordinates) {
-		console.log(coordinates);
+		cellEvents.handleMouseMove(coordinates.x, coordinates.y);
 	});
 
 	responsiveCanvas.resize();

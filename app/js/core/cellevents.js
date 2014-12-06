@@ -13,7 +13,7 @@ CellEvents.prototype.handleMouseDown = function(x, y) {
     var cell = this._getCell(x, y);
 
     this.currentCell = cell;
-	this.cellToggled.dispatch(cell.x, cell.y);
+	this.cellToggled.dispatch(cell);
 };
 
 CellEvents.prototype.handleMouseMove = function(x, y) {
@@ -27,7 +27,7 @@ CellEvents.prototype.handleMouseMove = function(x, y) {
 
 	if (!cell.equals(this.currentCell)) {
 		this.currentCell = cell;
-		this.cellToggled.dispatch(cell.x, cell.y);
+		this.cellToggled.dispatch(cell);
 	}
 };
 
