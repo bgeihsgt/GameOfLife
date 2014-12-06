@@ -10,17 +10,13 @@ describe('Cell events', function() {
 
 	describe('when the mouse goes down', function() {
 
-		var actualX,
-			actualY,
-			timesCalled;
+		var toggledCells;
 
 		beforeEach(function() {
-			timesCalled = 0;
+			toggledCells = [];
 
 			cellEvents.cellToggled.add(function(x, y) {
-				actualX = x;
-				actualY = y;
-				timesCalled++;
+				toggledCells.push({x: x, y: y});
 			});
 		});
 
@@ -31,18 +27,18 @@ describe('Cell events', function() {
 			});
 
 			it('should fire the cellToggled event at cell 0,0', function() {
-				actualX.should.equal(0);
-				actualY.should.equal(0);
+				toggledCells[0].x.should.equal(0);
+				toggledCells[0].y.should.equal(0);
 			});
 
-			describe('then the mouse moves to another part within the cell', function() {
+			describe('then the mouse moves to another part within the same cell', function() {
 
 				beforeEach(function() {
 					cellEvents.handleMouseMove(1, 0);
 				});
 
 				it('should not toggle any cells', function() {
-					timesCalled.should.equal(1);
+					toggledCells.should.have.lengthOf(1);
 				});
 
 			});
@@ -56,8 +52,8 @@ describe('Cell events', function() {
 			});
 
 			it('should fire the cellToggled event at the cell 2,3', function() {
-				actualX.should.equal(2);
-				actualY.should.equal(3);
+				toggledCells[0].x.should.equal(2);
+				toggledCells[0].y.should.equal(3);
 			});
 		});
 
@@ -68,8 +64,8 @@ describe('Cell events', function() {
 			});
 
 			it('should fire the cellToggled event at the cell 2,3', function() {
-				actualX.should.equal(2);
-				actualY.should.equal(3);
+				toggledCells[0].x.should.equal(2);
+				toggledCells[0].y.should.equal(3);
 			});
 		});
 
