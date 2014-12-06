@@ -17,12 +17,22 @@ CellEvents.prototype.handleMouseDown = function(x, y) {
 };
 
 CellEvents.prototype.handleMouseMove = function(x, y) {
-	var cell = this._getCell(x, y);
+	var cell;
+
+	if (!this.currentCell) {
+		return;
+	}
+
+	cell = this._getCell(x, y);
 
 	if (!cell.equals(this.currentCell)) {
 		this.currentCell = cell;
 		this.cellToggled.dispatch(cell.x, cell.y);
 	}
+};
+
+CellEvents.prototype.handleMouseUp = function(x, y) {
+	this.currentCell = undefined;
 };
 
 CellEvents.prototype._getCell = function(mouseX, mouseY) {

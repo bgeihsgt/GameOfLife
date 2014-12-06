@@ -20,13 +20,13 @@ describe('Cell events', function() {
 			});
 		});
 
-		describe('in the top left corner of cell 0,0', function() {
+		describe('in the top left corner of a cell', function() {
 
 			beforeEach(function() {
 				cellEvents.handleMouseDown(0, 0);
 			});
 
-			it('should fire the cellToggled event at cell 0,0', function() {
+			it('should toggle the cell at its coordinates', function() {
 				toggledCells[0].x.should.equal(0);
 				toggledCells[0].y.should.equal(0);
 			});
@@ -61,31 +61,51 @@ describe('Cell events', function() {
 						});
 					});
 
+					describe('then the mouse goes up', function() {
+						beforeEach(function() {
+							cellEvents.handleMouseUp(6, 7);
+						});
+
+						it('should not toggle that cell', function() {
+							toggledCells.should.have.lengthOf(2);
+						});
+
+						describe('then the mouse moves to a different cell', function() {
+							beforeEach(function() {
+								cellEvents.handleMouseMove(10, 7);
+							});
+
+							it('should not toggle that cell', function() {
+								toggledCells.should.have.lengthOf(2);
+							});
+						});
+					});
+
 				});
 
 			});
 
 		});
 
-		describe('in the top left corner of cell 2,3', function() {
+		describe('in the top left corner of another cell', function() {
 
 			beforeEach(function() {
 				cellEvents.handleMouseDown(10, 21);
 			});
 
-			it('should fire the cellToggled event at the cell 2,3', function() {
+			it('should toggle the cell at its coordinates', function() {
 				toggledCells[0].x.should.equal(2);
 				toggledCells[0].y.should.equal(3);
 			});
 		});
 
-		describe('in the bottom right corder of cell 2,3', function() {
+		describe('in the bottom right corner of another cell', function() {
 
 			beforeEach(function() {
 				cellEvents.handleMouseDown(14, 27);
 			});
 
-			it('should fire the cellToggled event at the cell 2,3', function() {
+			it('should toggle the cell at its coordinates', function() {
 				toggledCells[0].x.should.equal(2);
 				toggledCells[0].y.should.equal(3);
 			});
