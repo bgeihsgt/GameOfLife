@@ -29,7 +29,15 @@ var ResponsiveCanvas = function(canvasElement, options) {
 ResponsiveCanvas.prototype.resize = function() {
 	this._updateSizeAttributes();
 
-	this.resized.dispatch(this.canvasElement.getContext('2d'), this.canvasElement.width, this.canvasElement.height);
+	this.resized.dispatch(this.graphics(), this.canvasElement.width, this.canvasElement.height);
+};
+
+ResponsiveCanvas.prototype.width = function() {
+	return this.canvasElement.width;
+};
+
+ResponsiveCanvas.prototype.height = function() {
+	return this.canvasElement.height;
 };
 
 ResponsiveCanvas.prototype.signalClick = function(x, y) {
@@ -64,6 +72,10 @@ ResponsiveCanvas.prototype._updateSizeAttributes = function() {
 ResponsiveCanvas.prototype._removePreviousInlineUpdates = function() {
 	this.canvasElement.style.removeProperty('width');
 	this.canvasElement.style.removeProperty('height');
+};
+
+ResponsiveCanvas.prototype.graphics = function() {
+	return this.canvasElement.getContext('2d');
 };
 
 ResponsiveCanvas.create = function(canvasElement, options) {

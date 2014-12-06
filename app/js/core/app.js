@@ -14,6 +14,18 @@ var GameOfLife = require('./gameoflife.js'),
 	});
 
 	game = new GameOfLife();
+
+	game.changed.add(function() {
+		game.toScene({
+			width: responsiveCanvas.width(),
+			height: responsiveCanvas.height(),
+			cellWidth: 20,
+			cellHeight: 20,
+			livingCellColor: '#cccccc'
+		}).draw(responsiveCanvas.graphics());
+	});
+
+
 	cellEvents = new CellEvents({
 		cellWidth: 20,
 		cellHeight: 20

@@ -1,8 +1,10 @@
-var Scene = require('./Scene.js');
-var Grid = require('./Grid.js');
+var Signal = require('signals'),
+	Scene = require('./Scene.js'),
+	Grid = require('./Grid.js');
 
 var GameOfLife = function() {
 	this.livingCells = [];
+	this.changed = new Signal();
 };
 
 GameOfLife.prototype.toggleCell = function(cell) {
@@ -17,6 +19,7 @@ GameOfLife.prototype.toggleCell = function(cell) {
 	}
 
 	this.livingCells = newCells;
+	this.changed.dispatch();
 };
 
 GameOfLife.prototype.toScene = function(options) {

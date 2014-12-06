@@ -38,10 +38,15 @@ describe('A game of life', function() {
 
 		describe('then toggling a cell', function() {
 
-			var cell;
+			var cell,
+				changed;
 
 			beforeEach(function() {
+				changed = false;
 				cell = new Cell(4, 5);
+				gameOfLife.changed.add(function() {
+					changed = true;
+				});
 
 				gameOfLife.toggleCell(cell);
 			});
@@ -49,6 +54,10 @@ describe('A game of life', function() {
 			it('should have the cell in its living cells collection', function() {
 				gameOfLife.livingCells[0].x.should.equal(4);
 				gameOfLife.livingCells[0].y.should.equal(5);
+			});
+
+			it('should notify that the game changed', function() {
+				changed.should.equal(true);
 			});
 
 			describe('then rendering', function() {
