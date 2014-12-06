@@ -49,4 +49,88 @@ describe('A cell', function () {
 
 	});
 
+	describe('when checking equality', function() {
+
+		var other;
+
+		describe('with x and y equal', function() {
+
+			beforeEach(function() {
+				cell = new Cell(1, 2);
+				other = new Cell(1, 2);
+			});
+
+			it('should be equal', function() {
+				cell.equals(other).should.equal(true);
+			});
+			
+		});
+
+		describe('with same object', function() {
+
+			beforeEach(function() {
+				cell = new Cell(1, 2);
+				other = cell;
+			});
+
+			it('should be equal', function() {
+				cell.equals(other).should.equal(true);
+			});
+			
+		});
+
+		describe('with undefined', function() {
+
+			beforeEach(function() {
+				cell = new Cell(1, 2);
+				other = undefined;
+			});
+
+			it('should be equal', function() {
+				cell.equals(other).should.equal(false);
+			});
+			
+		});
+
+		describe('with different x', function() {
+
+			beforeEach(function() {
+				cell = new Cell(1, 2);
+				other = new Cell(0, 2);
+			});
+
+			it('should be equal', function() {
+				cell.equals(other).should.equal(false);
+			});
+			
+		});
+
+		describe('with different y', function() {
+
+			beforeEach(function() {
+				cell = new Cell(1, 2);
+				other = new Cell(1, 1);
+			});
+
+			it('should be equal', function() {
+				cell.equals(other).should.equal(false);
+			});
+			
+		});
+
+		describe('with a non cell', function() {
+
+			beforeEach(function() {
+				cell = new Cell(1, 2);
+				other = { x: 1, y: 2};
+			});
+
+			it('should be equal', function() {
+				cell.equals(other).should.equal(false);
+			});
+			
+		});
+
+	});
+
 });

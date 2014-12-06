@@ -12,4 +12,16 @@ Cell.prototype.toRectangle = function(cellWidth, cellHeight, fillColor) {
 	return new Rectangle(x, y, cellWidth, cellHeight, fillColor);
 };
 
+Cell.prototype.equals = function(other) {
+	if (!other) {
+		return false;
+	}
+
+	if (!(other instanceof Cell)) {
+		return false;
+	}
+
+	return this.x === other.x && this.y === other.y;
+};
+
 module.exports = Cell;

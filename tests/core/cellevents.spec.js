@@ -41,6 +41,28 @@ describe('Cell events', function() {
 					toggledCells.should.have.lengthOf(1);
 				});
 
+				describe('then the mouse moves to a different cell', function() {
+
+					beforeEach(function() {
+						cellEvents.handleMouseMove(5, 7);
+					});
+
+					it('should toggle that cell', function() {
+						toggledCells[1].should.eql({x: 1, y: 1});
+					});
+
+					describe('then the mouse moves within the same cell', function() {
+						beforeEach(function() {
+							cellEvents.handleMouseMove(6, 7);
+						});
+
+						it('should not toggle that cell', function() {
+							toggledCells.should.have.lengthOf(2);
+						});
+					});
+
+				});
+
 			});
 
 		});
