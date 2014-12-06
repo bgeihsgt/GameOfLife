@@ -1,6 +1,7 @@
 var GameOfLife = require('../../app/js/core/gameoflife.js');
 var Grid = require('../../app/js/core/grid.js');
 var Cell = require('../../app/js/core/cell.js');
+var Rectangle = require('../../app/js/core/rectangle.js');
 
 describe('A game of life', function() {
 
@@ -22,7 +23,8 @@ describe('A game of life', function() {
 					width: 134,
 					height: 78,
 					cellWidth: 12,
-					cellHeight: 29
+					cellHeight: 29,
+					backgroundColor: '#ffffff'
 				};
 
 				actualScene = gameOfLife.toScene(dimensions);
@@ -30,6 +32,7 @@ describe('A game of life', function() {
 
 			it('should create a scene with a grid fitting into the given dimensions', function() {
 				actualScene.drawables.should.eql([
+					new Rectangle(0, 0, 134, 78, '#ffffff'),
 					Grid.create(dimensions)
 				]);
 			});
@@ -71,7 +74,8 @@ describe('A game of life', function() {
 						height: 987,
 						cellWidth: 45,
 						cellHeight: 32,
-						livingCellColor: '#123456'
+						livingCellColor: '#123456',
+						backgroundColor: '#ffffff'
 					};
 
 					scene = gameOfLife.toScene(sceneOptions);
@@ -79,6 +83,7 @@ describe('A game of life', function() {
 
 				it('should convert the cell to a rectangle and add it to the scene', function() {
 					scene.drawables.should.eql([
+						new Rectangle(0, 0, 145, 987, '#ffffff'),
 						cell.toRectangle(45, 32, '#123456'),
 						Grid.create(sceneOptions)						
 					]);

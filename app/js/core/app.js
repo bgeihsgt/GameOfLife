@@ -15,14 +15,19 @@ var GameOfLife = require('./gameoflife.js'),
 
 	game = new GameOfLife();
 
-	game.changed.add(function() {
+	function drawGame() {
 		game.toScene({
 			width: responsiveCanvas.width(),
 			height: responsiveCanvas.height(),
 			cellWidth: 20,
 			cellHeight: 20,
-			livingCellColor: '#cccccc'
+			livingCellColor: '#cccccc',
+			backgroundColor: '#ffffff'
 		}).draw(responsiveCanvas.graphics());
+	}
+
+	game.changed.add(function() {
+		drawGame();
 	});
 
 
@@ -36,14 +41,7 @@ var GameOfLife = require('./gameoflife.js'),
 	});
 
 	responsiveCanvas.resized.add(function(g, width, height) {
-
-		game.toScene({
-			width: width,
-			height: height,
-			cellWidth: 20,
-			cellHeight: 20,
-			livingCellColor: '#cccccc'
-		}).draw(g);
+		drawGame();
 	});
 
 	responsiveCanvas.mouseWentDown.add(function(coordinates) {

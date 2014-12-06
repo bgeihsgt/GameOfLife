@@ -1,6 +1,7 @@
 var Signal = require('signals'),
 	Scene = require('./Scene.js'),
-	Grid = require('./Grid.js');
+	Grid = require('./Grid.js'),
+	Rectangle = require('./Rectangle.js');
 
 var GameOfLife = function() {
 	this.livingCells = [];
@@ -27,19 +28,10 @@ GameOfLife.prototype.toScene = function(options) {
 		return cell.toRectangle(options.cellWidth, options.cellHeight, options.livingCellColor);
 	}),
 	grid = [Grid.create(options)],
-	drawables = cellRectangles.concat(grid);
+	background = [new Rectangle(0, 0, options.width, options.height, options.backgroundColor)],
+	drawables = background.concat(cellRectangles).concat(grid);
 
 	return new Scene(drawables);
-};
-
-GameOfLife.prototype._findCell = function(cell) {
-	var matchingCell = this.livingCells.filter(function(item) {
-		if (item.equals(cell)) {
-			return true;
-		}
-	});
-
-	return matchingCell[0];
 };
 
 module.exports = GameOfLife;
