@@ -15,4 +15,8 @@ CellEvents.prototype.handleMouseDown = function(x, y) {
 	this.cellToggled.dispatch(cellX, cellY);
 };
 
+CellEvents.prototype.handleMouseMove = function(x, y) {
+	
+};
+
 module.exports = CellEvents;

@@ -10,13 +10,17 @@ describe('Cell events', function() {
 
 	describe('when the mouse goes down', function() {
 
-		var actualX;
-		var actualY;
+		var actualX,
+			actualY,
+			timesCalled;
 
 		beforeEach(function() {
+			timesCalled = 0;
+
 			cellEvents.cellToggled.add(function(x, y) {
 				actualX = x;
 				actualY = y;
+				timesCalled++;
 			});
 		});
 
@@ -30,6 +34,19 @@ describe('Cell events', function() {
 				actualX.should.equal(0);
 				actualY.should.equal(0);
 			});
+
+			describe('then the mouse moves to another part within the cell', function() {
+
+				beforeEach(function() {
+					cellEvents.handleMouseMove(1, 0);
+				});
+
+				it('should not toggle any cells', function() {
+					timesCalled.should.equal(1);
+				});
+
+			});
+
 		});
 
 		describe('in the top left corner of cell 2,3', function() {
