@@ -6,8 +6,10 @@ var Grid = function(options) {
 };
 
 Grid.prototype.draw = function(g) { 
+	g.beginPath();
 	this.columnLines.forEach(function(l) { l.draw(g); });
 	this.rowLines.forEach(function(l) { l.draw(g); });
+	g.stroke();
 };
 
 

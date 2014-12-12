@@ -27,7 +27,7 @@ describe('A scene', function() {
 		});
 
 		it ('should draw each of its drawables', function() {
-			mockGraphics.instructions.should.have.lengthOf(9);
+			mockGraphics.instructions.should.have.lengthOf(6);
 		});
 
 	});

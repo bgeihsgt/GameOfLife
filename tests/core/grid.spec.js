@@ -44,8 +44,10 @@ describe('A Grid', function() {
 			grid.draw(mockGraphics2d);
 		});
 
-		it('should draw the column and row lines', function() {
-			mockGraphics2d.instructions.should.have.lengthOf(21);
+		it('should draw the column and row lines in a single path', function() {
+			mockGraphics2d.instructions[0].should.eql(DrawingInstruction.beginPath());
+			mockGraphics2d.instructions[15].should.eql(DrawingInstruction.stroke());
+			mockGraphics2d.instructions.should.have.lengthOf(16);
 		});
 	});
 

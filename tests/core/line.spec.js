@@ -46,10 +46,6 @@ describe('A line', function() {
 			mockGraphics2d.instructions[1].should.eql(DrawingInstruction.lineTo(end.x, end.y));
 		});
 
-		it('will stroke third', function() {
-			mockGraphics2d.instructions[2].should.eql(DrawingInstruction.stroke());
-		});
-
 		it('will set the line width to line width', function() {
 			mockGraphics2d.lineWidth.should.eql(line.width);
 		});

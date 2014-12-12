@@ -20,6 +20,12 @@ module.exports.stroke = function() {
 	};
 };
 
+module.exports.beginPath = function() {
+	return {
+		type: 'beginPath'
+	};
+};
+
 module.exports.fillRect = function(x, y, width, height, fillStyle) {
 	return {
 		type: 'fillRect',

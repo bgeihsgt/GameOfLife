@@ -18,6 +18,10 @@ MockGraphics2d.prototype.stroke = function(x, y) {
 	this.instructions.push(DrawingInstruction.stroke());
 };
 
+MockGraphics2d.prototype.beginPath = function(x, y) {
+	this.instructions.push(DrawingInstruction.beginPath());
+};
+
 MockGraphics2d.prototype.fillRect = function(x, y, width, height) {
 	this.instructions.push(DrawingInstruction.fillRect(x, y, width, height, this.fillStyle));
 };
