@@ -133,4 +133,16 @@ describe('A cell', function () {
 
 	});
 
+	describe('hash code', function() {
+
+		beforeEach(function() {
+			cell = new Cell(1, 1);
+		});
+
+		it('should be a standard hash on two integers', function() {
+			cell.getHashCode().should.equal(32);
+		});
+
+	});
+
 });

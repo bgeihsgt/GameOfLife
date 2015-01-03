@@ -24,4 +24,8 @@ Cell.prototype.equal = function(other) {
 	return this.x === other.x && this.y === other.y;
 };
 
+Cell.prototype.getHashCode = function() {
+	return this.x * 31 + this.y;
+};
+
 module.exports = Cell;
