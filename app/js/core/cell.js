@@ -12,6 +12,34 @@ Cell.prototype.toRectangle = function(cellWidth, cellHeight, fillColor) {
 	return new Rectangle(x, y, cellWidth, cellHeight, fillColor);
 };
 
+Cell.prototype.countNeighbors = function(cells) {
+	var self = this;
+
+	var neighbors = this._getNeighbors();
+
+	return neighbors.filter(function(c) {
+		return cells.contains(c);
+	}).length;
+};
+
+Cell.prototype._getNeighbors = function() {
+	var neighbors = [],
+		x,
+		y;
+
+	for (x = this.x - 1; x <= this.x + 1; x++) {
+		for (y = this.y -1; y <= this.y + 1; y++) {
+			if (x === this.x && y === this.y) {
+				continue;
+			}
+
+			neighbors.push(new Cell(x, y));
+		}
+	}
+
+	return neighbors;
+};
+
 Cell.prototype.equal = function(other) {
 	if (!other) {
 		return false;

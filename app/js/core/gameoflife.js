@@ -31,11 +31,18 @@ GameOfLife.prototype.toScene = function(options) {
 };
 
 GameOfLife.prototype.nextGeneration = function() {
-	if (this.livingCells.count() === 1) {
-		this.livingCells.clear();
-	}
+	var cells = this.livingCells,
+		newCells = new hashes.HashSet();
 
+	cells.getKeys().forEach(function(c) {
+		var neighborCount = c.countNeighbors(cells);
 
+		if (neighborCount === 2 || neighborCount === 3) {
+			newCells.add(c);
+		}
+	});
+
+	this.livingCells = newCells;
 	this.changed.dispatch();
 };
 

@@ -1,4 +1,5 @@
-var Cell = require('../../app/js/core/Cell.js');
+var Cell = require('../../app/js/core/Cell.js'),
+	hashes = require('../../app/js/lib/hashes.js');
 
 describe('A cell', function () {
 
@@ -141,6 +142,82 @@ describe('A cell', function () {
 
 		it('should be a standard hash on two integers', function() {
 			cell.getHashCode().should.equal(32);
+		});
+
+	});
+
+	describe('count neighbors', function() {
+
+		var cells;
+
+		beforeEach(function() {
+			cell = new Cell(1, 1);
+			cells = new hashes.HashSet();
+		});
+
+		it('should count no neighbors when given cells are empty', function() {
+			cell.countNeighbors(cells).should.equal(0);
+		});
+
+		it('should not count itself', function() {
+			cells.add(cell);
+
+			cell.countNeighbors(cells).should.equal(0);
+		});
+
+		it('should not count more than one distance away', function() {
+			cells.add(new Cell(-1, 1));
+			cells.add(new Cell(1, -1));
+
+			cell.countNeighbors(cells).should.equal(0);
+		});
+
+		it('should count above and to the left', function() {
+			cells.add(new Cell(0, 2));
+
+			cell.countNeighbors(cells).should.equal(1);
+		});
+
+		it('should count directly above', function() {
+			cells.add(new Cell(1, 2));
+
+			cell.countNeighbors(cells).should.equal(1);
+		});
+
+		it('should count above and to the right', function() {
+			cells.add(new Cell(2, 2));
+
+			cell.countNeighbors(cells).should.equal(1);
+		});
+
+		it('should count directly to the right', function() {
+			cells.add(new Cell(2, 1));
+
+			cell.countNeighbors(cells).should.equal(1);
+		});
+
+		it('should count below and to the right', function() {
+			cells.add(new Cell(2, 0));
+
+			cell.countNeighbors(cells).should.equal(1);
+		});
+
+		it('should count directly below', function() {
+			cells.add(new Cell(1, 0));
+
+			cell.countNeighbors(cells).should.equal(1);
+		});
+
+		it('should count below and to the left', function() {
+			cells.add(new Cell(0, 0));
+
+			cell.countNeighbors(cells).should.equal(1);
+		});
+
+		it('should could directly to the left', function() {
+			cells.add(new Cell(0, 1));
+
+			cell.countNeighbors(cells).should.equal(1);
 		});
 
 	});
