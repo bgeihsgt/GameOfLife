@@ -122,6 +122,69 @@ describe('A game of life', function() {
 
 		});
 
+		describe('when calculating the next generation', function() {
+
+			function shouldContainCell(x, y) {
+				return gameOfLife.livingCells.some(function(c) {
+					return c.x === x && c.y === y;
+				});
+			}
+
+			describe('in any circumstance', function() {
+
+				var called;
+
+				beforeEach(function() {
+					called = false;
+
+					gameOfLife.changed.add(function() {
+						called = true;
+					});
+
+					gameOfLife.nextGeneration();
+				});
+
+				it('should fire the changed event', function() {
+					called.should.equal(true);
+				});
+
+			});
+
+			describe('a cell with no neighbors', function() {
+
+				beforeEach(function() {
+					cell = new Cell(4, 5);
+
+					gameOfLife.toggleCell(cell);
+
+					gameOfLife.nextGeneration();
+				});
+
+
+				it('should die in the next generation', function() {
+					gameOfLife.livingCells.should.have.lengthOf(0);
+				});
+
+			});
+
+			describe('a cell with 2 neighbors', function() {
+
+				beforeEach(function() {
+					gameOfLife.toggleCell(new Cell(4, 5));
+					gameOfLife.toggleCell(new Cell(3, 5));
+					gameOfLife.toggleCell(new Cell(5, 5));
+
+					gameOfLife.nextGeneration();
+				});
+
+				it('should live in the next generation', function() {
+					shouldContainCell(4,5).should.equal(true);
+				});
+
+			});
+
+		});
+
 	});
 
 });

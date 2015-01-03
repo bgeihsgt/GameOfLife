@@ -34,4 +34,11 @@ GameOfLife.prototype.toScene = function(options) {
 	return new Scene(drawables);
 };
 
+GameOfLife.prototype.nextGeneration = function() {
+	if (this.livingCells.length === 1) {
+		this.livingCells = [];
+	}
+	this.changed.dispatch();
+};
+
 module.exports = GameOfLife;
