@@ -1,31 +1,26 @@
 var Signal = require('signals'),
-	hashes = require('hashes'),
+	hashes = require('../lib/hashes'),
 	Scene = require('./Scene.js'),
 	Grid = require('./Grid.js'),
 	Rectangle = require('./Rectangle.js');
 
 var GameOfLife = function() {
-	this.livingCells = [];
+	this.livingCells = new hashes.HashSet();
 	this.changed = new Signal();
 };
 
 GameOfLife.prototype.toggleCell = function(cell) {
-	var originalLength = this.livingCells.length;
-
-	var newCells = this.livingCells.filter(function(item) {
-		return !item.equal(cell);
-	});
-
-	if (newCells.length === originalLength) {
-		newCells.push(cell);
+	if (this.livingCells.contains(cell)) {
+		this.livingCells.remove(cell);
+	} else {
+		this.livingCells.add(cell);
 	}
 
-	this.livingCells = newCells;
 	this.changed.dispatch();
 };
 
 GameOfLife.prototype.toScene = function(options) {
-	var cellRectangles = this.livingCells.map(function(cell) {
+	var cellRectangles = this.livingCells.getKeys().map(function(cell) {
 		return cell.toRectangle(options.cellWidth, options.cellHeight, options.livingCellColor);
 	}),
 	grid = [Grid.create(options)],
@@ -36,9 +31,11 @@ GameOfLife.prototype.toScene = function(options) {
 };
 
 GameOfLife.prototype.nextGeneration = function() {
-	if (this.livingCells.length === 1) {
-		this.livingCells = [];
+	if (this.livingCells.count() === 1) {
+		this.livingCells.clear();
 	}
+
+
 	this.changed.dispatch();
 };
 

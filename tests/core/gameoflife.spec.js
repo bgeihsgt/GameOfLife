@@ -55,8 +55,8 @@ describe('A game of life', function() {
 			});
 
 			it('should have the cell in its living cells collection', function() {
-				gameOfLife.livingCells[0].x.should.equal(4);
-				gameOfLife.livingCells[0].y.should.equal(5);
+				gameOfLife.livingCells.count().should.equal(1);
+				gameOfLife.livingCells.contains(new Cell(4, 5)).should.equal(true);
 			});
 
 			it('should notify that the game changed', function() {
@@ -100,8 +100,8 @@ describe('A game of life', function() {
 				});
 
 				it('should add the cell to the living cells collection', function() {
-					gameOfLife.livingCells[1].x.should.equal(5);
-					gameOfLife.livingCells[1].y.should.equal(5);
+					gameOfLife.livingCells.count().should.equal(2);
+					gameOfLife.livingCells.contains(new Cell(5, 5)).should.equal(true);
 				});
 
 			});
@@ -115,7 +115,7 @@ describe('A game of life', function() {
 				});
 
 				it('should remove that cell from the living cells collection', function() {
-					gameOfLife.livingCells.should.have.lengthOf(0);
+					gameOfLife.livingCells.count().should.equal(0);
 				});
 
 			});
@@ -125,9 +125,9 @@ describe('A game of life', function() {
 		describe('when calculating the next generation', function() {
 
 			function shouldContainCell(x, y) {
-				return gameOfLife.livingCells.some(function(c) {
-					return c.x === x && c.y === y;
-				});
+				var cell = new Cell(x, y);
+
+				return gameOfLife.livingCells.contains(cell);
 			}
 
 			describe('in any circumstance', function() {
@@ -162,7 +162,7 @@ describe('A game of life', function() {
 
 
 				it('should die in the next generation', function() {
-					gameOfLife.livingCells.should.have.lengthOf(0);
+					gameOfLife.livingCells.count().should.equal(0);
 				});
 
 			});
