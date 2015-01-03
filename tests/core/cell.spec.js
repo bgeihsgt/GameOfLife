@@ -61,7 +61,7 @@ describe('A cell', function () {
 			});
 
 			it('should be equal', function() {
-				cell.equals(other).should.equal(true);
+				cell.equal(other).should.equal(true);
 			});
 			
 		});
@@ -74,7 +74,7 @@ describe('A cell', function () {
 			});
 
 			it('should be equal', function() {
-				cell.equals(other).should.equal(true);
+				cell.equal(other).should.equal(true);
 			});
 			
 		});
@@ -87,7 +87,7 @@ describe('A cell', function () {
 			});
 
 			it('should be equal', function() {
-				cell.equals(other).should.equal(false);
+				cell.equal(other).should.equal(false);
 			});
 			
 		});
@@ -100,7 +100,7 @@ describe('A cell', function () {
 			});
 
 			it('should be equal', function() {
-				cell.equals(other).should.equal(false);
+				cell.equal(other).should.equal(false);
 			});
 			
 		});
@@ -113,7 +113,7 @@ describe('A cell', function () {
 			});
 
 			it('should be equal', function() {
-				cell.equals(other).should.equal(false);
+				cell.equal(other).should.equal(false);
 			});
 			
 		});
@@ -126,7 +126,7 @@ describe('A cell', function () {
 			});
 
 			it('should be equal', function() {
-				cell.equals(other).should.equal(false);
+				cell.equal(other).should.equal(false);
 			});
 			
 		});

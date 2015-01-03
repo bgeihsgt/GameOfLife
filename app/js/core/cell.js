@@ -12,7 +12,7 @@ Cell.prototype.toRectangle = function(cellWidth, cellHeight, fillColor) {
 	return new Rectangle(x, y, cellWidth, cellHeight, fillColor);
 };
 
-Cell.prototype.equals = function(other) {
+Cell.prototype.equal = function(other) {
 	if (!other) {
 		return false;
 	}

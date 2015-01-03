@@ -25,7 +25,7 @@ CellEvents.prototype.handleMouseMove = function(x, y) {
 
 	cell = this._getCell(x, y);
 
-	if (!cell.equals(this.currentCell)) {
+	if (!cell.equal(this.currentCell)) {
 		this.currentCell = cell;
 		this.cellToggled.dispatch(cell);
 	}

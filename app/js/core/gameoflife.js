@@ -1,4 +1,5 @@
 var Signal = require('signals'),
+	hashes = require('hashes'),
 	Scene = require('./Scene.js'),
 	Grid = require('./Grid.js'),
 	Rectangle = require('./Rectangle.js');
@@ -12,7 +13,7 @@ GameOfLife.prototype.toggleCell = function(cell) {
 	var originalLength = this.livingCells.length;
 
 	var newCells = this.livingCells.filter(function(item) {
-		return !item.equals(cell);
+		return !item.equal(cell);
 	});
 
 	if (newCells.length === originalLength) {
