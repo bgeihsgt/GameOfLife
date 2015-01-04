@@ -1,5 +1,5 @@
 var Signal = require('signals'),
-	hashes = require('../lib/hashes'),
+	hashes = require('hashes'),
 	Scene = require('./Scene.js'),
 	Grid = require('./Grid.js'),
 	Rectangle = require('./Rectangle.js');

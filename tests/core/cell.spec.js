@@ -1,5 +1,5 @@
 var Cell = require('../../app/js/core/Cell.js'),
-	hashes = require('../../app/js/lib/hashes.js');
+	hashes = require('hashes');
 
 describe('A cell', function () {
 
