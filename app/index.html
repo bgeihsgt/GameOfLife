@@ -6,7 +6,7 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
 		<title>Game of Life JavaScript</title>
 		
-		<link rel="stylesheet" type="text/css" href="app.css"></link>
+		<link rel="stylesheet" type="text/css" href="css/app.css"></link>
 	</head>
 	<body>
 		<header class="container-fluid">
@@ -14,7 +14,10 @@
 		</header>
 		<main role="main" class="container-fluid">
 			<canvas id="game-surface" width="300" height="360"></canvas>
+			<section id="menu">
+				<button type="button" class="btn btn-default" id="play"><span class="glyphicon glyphicon-play" aria-hidden="true"></span></button>
+			</section>
 		</main>
-		<script src="app.min.js"></script>
+		<script src="js/app.min.js"></script>
 	</body>
 </html>

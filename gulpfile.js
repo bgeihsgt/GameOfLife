@@ -72,11 +72,20 @@ gulp.task('browserify-uitests', function() {
 	});
 });
 
-gulp.task('css', function() {
+gulp.task('fonts', ['clean'], function() {
+	return gulp.src('node_modules/bootstrap-sass/assets/fonts/bootstrap/glyphicons-halflings-regular.*')
+			.pipe(rename({
+				dirname: 'bootstrap'
+			}))
+			.pipe(gulp.dest('build/fonts'));
+
+});
+
+gulp.task('css',['fonts'], function() {
 	return gulp.src(allSassSources)
 			.pipe(sass())
 			.pipe(minifyCss())
-			.pipe(gulp.dest('app/css'));
+			.pipe(gulp.dest('build/css'));
 });
 
 gulp.task('watch', function() {
@@ -90,14 +99,14 @@ gulp.task('browserify', function() {
 
 	return bundleStream
 		.pipe(source('app.js'))		
-		.pipe(gulp.dest('build'))
+		.pipe(gulp.dest('build/js'))
 		.pipe(streamify(uglify()))
 		.pipe(rename('app.min.js'))
-		.pipe(gulp.dest('build'));
+		.pipe(gulp.dest('build/js'));
 });
 
 gulp.task('build', ['clean', 'test', 'uitests', 'css', 'browserify'], function() {
-	return gulp.src(['app/index.html', 'app/css/*.css'])
+	return gulp.src(['app/index.html'])
 		.pipe(gulp.dest('build'));
 }); 
 

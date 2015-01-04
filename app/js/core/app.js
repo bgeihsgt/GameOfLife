@@ -5,7 +5,8 @@ var GameOfLife = require('./gameoflife.js'),
 	gameSurface,
 	game,
 	cellEvents,
-	responsiveCanvas;
+	responsiveCanvas,
+	playButton;
 	
 	gameSurface = document.getElementById('game-surface');
 	responsiveCanvas = ResponsiveCanvas.create(gameSurface, {
@@ -30,6 +31,14 @@ var GameOfLife = require('./gameoflife.js'),
 		drawGame();
 	});
 
+
+	playButton = document.getElementById('play');
+
+	play.addEventListener('click', function(e) {
+		setInterval(function() {
+			game.nextGeneration();
+		}, 100);
+	});
 
 	cellEvents = new CellEvents({
 		cellWidth: 20,
