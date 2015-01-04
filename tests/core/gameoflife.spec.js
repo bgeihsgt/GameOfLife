@@ -124,7 +124,7 @@ describe('A game of life', function() {
 
 		describe('when calculating the next generation', function() {
 
-			function shouldContainCell(x, y) {
+			function containsCell(x, y) {
 				var cell = new Cell(x, y);
 
 				return gameOfLife.livingCells.contains(cell);
@@ -150,7 +150,7 @@ describe('A game of life', function() {
 
 			});
 
-			describe('a cell with no neighbors', function() {
+			describe('a living cell with no neighbors', function() {
 
 				beforeEach(function() {
 					cell = new Cell(4, 5);
@@ -167,7 +167,7 @@ describe('A game of life', function() {
 
 			});
 
-			describe('a cell with 1 neighbor', function() {
+			describe('a living cell with 1 neighbor', function() {
 
 				beforeEach(function() {
 					gameOfLife.toggleCell(new Cell(4, 5));
@@ -177,12 +177,12 @@ describe('A game of life', function() {
 				});
 
 				it('should die in the next generation', function() {
-					shouldContainCell(4,5).should.equal(false);
+					containsCell(4,5).should.equal(false);
 				});
 
 			});
 
-			describe('a cell with 2 neighbors', function() {
+			describe('a living cell with 2 neighbors', function() {
 
 				beforeEach(function() {
 					gameOfLife.toggleCell(new Cell(4, 5));
@@ -193,12 +193,12 @@ describe('A game of life', function() {
 				});
 
 				it('should live in the next generation', function() {
-					shouldContainCell(4,5).should.equal(true);
+					containsCell(4,5).should.equal(true);
 				});
 
 			});
 
-			describe('a cell with 3 neighbors', function() {
+			describe('a living cell with 3 neighbors', function() {
 
 				beforeEach(function() {
 					gameOfLife.toggleCell(new Cell(4, 5));
@@ -210,12 +210,12 @@ describe('A game of life', function() {
 				});
 
 				it('should live in the next generation', function() {
-					shouldContainCell(4,5).should.equal(true);
+					containsCell(4,5).should.equal(true);
 				});
 
 			});
 			
-			describe('a cell with 4 or more neighbors', function() {
+			describe('a living cell with 4 or more neighbors', function() {
 
 				beforeEach(function() {
 					gameOfLife.toggleCell(new Cell(4, 5));
@@ -228,9 +228,23 @@ describe('A game of life', function() {
 				});
 
 				it('should die in the next generation', function() {
-					shouldContainCell(4,5).should.equal(false);
+					containsCell(4,5).should.equal(false);
 				});
 
+			});
+
+			describe('a dead cell with exactly 3 neighbors', function() {
+				beforeEach(function() {
+					gameOfLife.toggleCell(new Cell(4, 5));
+					gameOfLife.toggleCell(new Cell(4, 6));
+					gameOfLife.toggleCell(new Cell(4, 7));
+
+					gameOfLife.nextGeneration();
+				});
+
+				it('should live', function() {
+					containsCell(5,6).should.equal(true);
+				});
 			});
 
 		});

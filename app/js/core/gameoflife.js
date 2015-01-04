@@ -35,11 +35,16 @@ GameOfLife.prototype.nextGeneration = function() {
 		newCells = new hashes.HashSet();
 
 	cells.getKeys().forEach(function(c) {
-		var neighborCount = c.countNeighbors(cells);
+		var neighborCount = c.countNeighbors(cells),
+			deadNeighbors = c.getDeadNeighbors(cells);
 
 		if (neighborCount === 2 || neighborCount === 3) {
 			newCells.add(c);
 		}
+
+		newCells.addRange(deadNeighbors.filter(function(c) {
+			return c.countNeighbors(cells) === 3;
+		}));
 	});
 
 	this.livingCells = newCells;

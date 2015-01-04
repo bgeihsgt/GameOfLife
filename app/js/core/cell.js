@@ -22,6 +22,16 @@ Cell.prototype.countNeighbors = function(cells) {
 	}).length;
 };
 
+Cell.prototype.getDeadNeighbors = function(cells) {
+	var self = this;
+
+	var neighbors = this._getNeighbors();
+
+	return neighbors.filter(function(c) {
+		return !cells.contains(c);
+	});	
+};
+
 Cell.prototype._getNeighbors = function() {
 	var neighbors = [],
 		x,
